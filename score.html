@@ -4,22 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="stylesheet" href="./assets/score.css">
   <title>Quiz Score</title>
 </head>
 
 <body>
-  <div id="score-container">
-    <h1>All done!</h1>
-    <p id="score-value">Final Score: <span></span></p>
-    <label for="initials">Enter Initials: </label>
-    <input type="text" id="initials" placeholder="Your Initials">
-    <button id="go-back-btn">Go Back</button>
-    <button id="clear-scores-btn">Clear High Scores</button>
-    
-    <div id="high-scores-container"></div>
-  </div>
-  <script src="./assets/score.js"></script>
-</body>
+    <div id="score-container">
+      <h1>All done!</h1>
+      <p id="score-value">Final Score: <span></span></p>
+      <label for="initials">Enter Initials: </label>
+      <input type="text" id="initials" placeholder="Your Initials">
+      <div id="button-container">
+        <button id="go-back-btn">Go Back</button>
+        <button id="clear-scores-btn">Clear High Scores</button>
+        <p> High Scores</p>
+      </div>
+  
+      <div id="high-scores-container"></div>
+    </div>
+    <script src="./assets/score.js"></script>
+  </body>
+  
 
 </html>

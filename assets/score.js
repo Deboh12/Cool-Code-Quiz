@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const userScore = urlParams.get("score") || 0;
 
-    console.log("User Score:", userScore); // Add this line to log the user score
+    console.log("User Score", userScore); 
 
     displayFinalScore(userScore);
     displayHighScores();
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
       highScores.forEach((entry, index) => {
         const card = document.createElement("div");
         card.classList.add("score-card");
-        card.innerHTML = `<span class="initials">${entry.initials}</span>: ${entry.score}`;
+        card.innerHTML = `<span class="initials">${entry.initials}</span> ${entry.score}`;
         highScoresContainer.appendChild(card);
       });
     }
