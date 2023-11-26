@@ -33,22 +33,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ];
 
-  
+    // Initialize variables to keep track of quiz state
     let currentQuestionIndex = 0;
     let timer;
     let timeLeft = 75;
-    let userScore = 0; // Added to keep track of the user's score
+    let userScore = 0; // keep track of the user's score
   
+    // DOM elements for various containers
     const startContainer = document.getElementById("start-container");
     const quizContainer = document.getElementById("quiz-container");
     const questionContainer = document.getElementById("question-container");
     const choicesContainer = document.getElementById("choices-container");
     const feedbackContainer = document.getElementById("feedback-container");
   
+    // Function to display feedback messages
     function displayFeedback(message) {
       feedbackContainer.textContent = message;
     }
   
+    // Event listener for the "Start Quiz" button
     document.getElementById("start-btn").addEventListener("click", startQuiz);
   
     function startQuiz() {
@@ -59,11 +62,13 @@ document.addEventListener("DOMContentLoaded", function () {
       updateTimer();
     }
   
+    // Function to display the next question
     function displayNextQuestion() {
       const currentQuestion = quizQuestions[currentQuestionIndex];
       questionContainer.textContent = currentQuestion.question;
       choicesContainer.innerHTML = "";
   
+      // Create buttons for each answer choice
       currentQuestion.choices.forEach((choice, index) => {
         const button = document.createElement("button");
         button.textContent = choice;
@@ -71,8 +76,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   
+    // Event listener for clicking on answer choices
     choicesContainer.addEventListener("click", checkAnswer);
   
+    // Function to check the selected answer
     function checkAnswer(event) {
       const clickedButton = event.target;
   
@@ -80,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedAnswer = clickedButton.textContent;
         const currentQuestion = quizQuestions[currentQuestionIndex];
   
+        // Check if the selected answer is correct
         if (selectedAnswer === currentQuestion.correctAnswer) {
           displayFeedback("Correct!");
           userScore += 1; // Adjust the score based on your scoring system
@@ -92,8 +100,10 @@ document.addEventListener("DOMContentLoaded", function () {
           updateTimer();
         }
   
+        // Move to next question
         currentQuestionIndex++;
   
+        // Check if there are more questions, otherwise end the quiz
         if (currentQuestionIndex < quizQuestions.length) {
           displayNextQuestion();
         } else {
@@ -102,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   
+    // Function to start the timer
     function startTimer() {
       timer = setInterval(function () {
         timeLeft--;
@@ -112,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 1000);
     }
   
+    // Function to update the timer display
     function updateTimer() {
       document.getElementById("timer-container").textContent = "Time: " + timeLeft + "s";
     }

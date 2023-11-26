@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Event listener for "Go Back" button
     goBackBtn.addEventListener("click", function () {
-      window.location.href = "./index.html"; // Replace with the actual path to your quiz page.
+      window.location.href = "./index.html";
     });
   
     // Event listener for "Clear High Scores" button
