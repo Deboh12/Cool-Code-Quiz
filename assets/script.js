@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
   
     let currentQuestionIndex = 0;
     let timer;
-    let timeLeft = 75; 
+    let timeLeft = 75;
+    let userScore = 0; // Added to keep track of the user's score
   
     const startContainer = document.getElementById("start-container");
     const quizContainer = document.getElementById("quiz-container");
@@ -45,9 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const feedbackContainer = document.getElementById("feedback-container");
   
     function displayFeedback(message) {
-        feedbackContainer.textContent = message;
-      }
-
+      feedbackContainer.textContent = message;
+    }
+  
     document.getElementById("start-btn").addEventListener("click", startQuiz);
   
     function startQuiz() {
@@ -73,48 +74,51 @@ document.addEventListener("DOMContentLoaded", function () {
     choicesContainer.addEventListener("click", checkAnswer);
   
     function checkAnswer(event) {
-        const clickedButton = event.target;
-      
-        if (clickedButton.tagName === "BUTTON") {
-          const selectedAnswer = clickedButton.textContent;
-          const currentQuestion = quizQuestions[currentQuestionIndex];
-      
-          if (selectedAnswer === currentQuestion.correctAnswer) {
-            displayFeedback("Correct!");
-          } else {
-            displayFeedback("Incorrect!");
-            timeLeft -= 15;
-            if (timeLeft < 0) {
-                timeLeft = 0;
-            }
-            updateTimer();
+      const clickedButton = event.target;
+  
+      if (clickedButton.tagName === "BUTTON") {
+        const selectedAnswer = clickedButton.textContent;
+        const currentQuestion = quizQuestions[currentQuestionIndex];
+  
+        if (selectedAnswer === currentQuestion.correctAnswer) {
+          displayFeedback("Correct!");
+          userScore += 1; // Adjust the score based on your scoring system
+        } else {
+          displayFeedback("Incorrect!");
+          timeLeft -= 15;
+          if (timeLeft < 0) {
+            timeLeft = 0;
           }
-      
-          currentQuestionIndex++;
-      
-          if (currentQuestionIndex < quizQuestions.length) {
-            displayNextQuestion();
-          } else {
-            endQuiz();
-          }
+          updateTimer();
+        }
+  
+        currentQuestionIndex++;
+  
+        if (currentQuestionIndex < quizQuestions.length) {
+          displayNextQuestion();
+        } else {
+          endQuiz(userScore); // Pass the userScore to endQuiz
         }
       }
+    }
   
     function startTimer() {
       timer = setInterval(function () {
         timeLeft--;
         updateTimer();
         if (timeLeft <= 0) {
-          endQuiz();
+          endQuiz(userScore); // Pass the userScore to endQuiz
         }
       }, 1000);
     }
-
+  
     function updateTimer() {
-        document.getElementById("timer-container").textContent = "Time: " + timeLeft + "s";
+      document.getElementById("timer-container").textContent = "Time: " + timeLeft + "s";
     }
   
-    function endQuiz() {
+    function endQuiz(userScore) {
       clearInterval(timer);
+      userScore = timeLeft;
+      window.location.href = `./score.html?score=${userScore}`;
     }
   });
