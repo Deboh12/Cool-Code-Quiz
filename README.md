@@ -1,5 +1,8 @@
 # Cool-Code-Quiz
 
+## Link to Deployed Application
+https://deboh12.github.io/Cool-Code-Quiz/
+
 ## Description
 Cool Code Quiz is a web-based quiz application designed to test users' knowledge of JavaScript. The motivation behind this project was to create an engaging and interactive way for individuals to assess their understanding of JavaScript concepts. The project was developed not only as a practical exercise but also to provide an educational resource for those learning JavaScript.
 
