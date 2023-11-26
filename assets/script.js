@@ -2,17 +2,41 @@ document.addEventListener("DOMContentLoaded", function () {
     
     const quizQuestions = [
       {
-        question: "What does HTML stand for?",
-        choices: ["Hyper Text Markup Language", "Hyperlinks and Text Markup Language", "Home Tool Markup Language"],
-        correctAnswer: "Hyperlinks and Text Markup Language"
+        question: "Commonly used data types DO Not Include:",
+        choices: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
+        correctAnswer: "3. alerts"
       },
-      //more questions
+
+      {
+        question: "The condition in an if/else statement is enclosed with __________",
+        choices: ["1. quotes", "2. curly brackets", "3. parenthesis", "4. square brackets"],
+        correctAnswer: "3. parenthesis"
+      },
+
+      {
+        question: "Arrays in JavaScript can be used to store ________.",
+        choices: ["1. numbers adn strings", "2. other arrays", "3. booleans", "4. all of the above"],
+        correctAnswer: "4. all of the above"
+      },
+
+      {
+        question: "String values must be enclosed within ___________ when being assigned to variables.",
+        choices: ["1. commas", "2. curly brackets", "3. quotes", "4. parenthesis"],
+        correctAnswer: "3. quotes"
+      },
+
+      {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        choices: ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log"],
+        correctAnswer: "4. console.log"
+      },
+
     ];
+
   
-   
     let currentQuestionIndex = 0;
     let timer;
-    let timeLeft = 60; 
+    let timeLeft = 75; 
   
     const startContainer = document.getElementById("start-container");
     const quizContainer = document.getElementById("quiz-container");
@@ -29,9 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function startQuiz() {
       startContainer.style.display = "none";
       quizContainer.classList.remove("hidden");
-  
       displayNextQuestion();
       startTimer();
+      updateTimer();
     }
   
     function displayNextQuestion() {
@@ -59,6 +83,11 @@ document.addEventListener("DOMContentLoaded", function () {
             displayFeedback("Correct!");
           } else {
             displayFeedback("Incorrect!");
+            timeLeft -= 15;
+            if (timeLeft < 0) {
+                timeLeft = 0;
+            }
+            updateTimer();
           }
       
           currentQuestionIndex++;
@@ -74,10 +103,15 @@ document.addEventListener("DOMContentLoaded", function () {
     function startTimer() {
       timer = setInterval(function () {
         timeLeft--;
+        updateTimer();
         if (timeLeft <= 0) {
           endQuiz();
         }
       }, 1000);
+    }
+
+    function updateTimer() {
+        document.getElementById("timer-container").textContent = "Time: " + timeLeft + "s";
     }
   
     function endQuiz() {
